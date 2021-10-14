@@ -1,19 +1,33 @@
 import React, {useState, useEffect} from 'react';
 import { Text, Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 
 export default function TarotCard (props) {
   const {threeCardDraw, oneCardDraw, images} = props;
   console.log(props)
+  console.log(oneCardDraw.img)
 
   return (
     oneCardDraw ?
     <Card elevation={3}>
-      <Card.Title title={oneCardDraw[0].name} subtitle={oneCardDraw[0].type + ' arcana'} />
-      <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+      <Card.Title title={oneCardDraw.name} subtitle={oneCardDraw.arcana} />
+      <Card.Cover source={{ uri: oneCardDraw.img }} />
       <Card.Content>
-      <Paragraph>{oneCardDraw[0].meaning_up}</Paragraph>
+      <Text>This card represents:</Text>
+      {oneCardDraw.meanings.light.map((string, index)=>{
+        return <Paragraph key={index}>
+          {'- '+ string+'.'}
+        </Paragraph>
+      })}
       </Card.Content>
-
+      <Card.Content>
+      <Text>Questions to ponder:</Text>
+      {oneCardDraw['Questions to Ask'].map((string, index)=>{
+        return <Paragraph key={index}>
+          {'- '+ string}
+        </Paragraph>
+      })}
+      </Card.Content>
     </Card>
     :
     threeCardDraw ?
@@ -29,9 +43,10 @@ export default function TarotCard (props) {
     </Card>
     })
      :
-     <Text>
-     Select a draw type below
-     </Text>
+     <Image
+     source={{uri: "https://tinyimg.io/i/G2xxcMw.jpeg"}}
+     style={{width: 200, height: 200}}
+   />
 
   );
 }

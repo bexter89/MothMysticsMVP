@@ -16,7 +16,7 @@ export default function App() {
    axios
    .get('http://3.19.14.62/oneCard/')
    .then((response) => {
-     console.log('response:', response);
+     console.log('response:', response.data);
      setOneCardDrawResult(response.data)
    })
    .catch((error)=> {
@@ -51,21 +51,9 @@ export default function App() {
       <Button
         style={styles.button}
         onPress={() => {
-          setOneCard(false);
-          setClickedStatus(true);
           pull1Card();
         }}
-        disabled={!oneCard || !threeCard}
-        title={oneCard ? "one card!" : "Pulling your card!"}
-      />
-            <Button
-        onPress={() => {
-          setThreeCard(false);
-          setClickedStatus(true);
-          pull3Cards();
-        }}
-        disabled={!oneCard || !threeCard}
-        title={oneCard ? "3 cards!" : "Pulling your cards!"}
+        title={oneCard ? "pull a card!" : "Pulling your card!"}
       />
     </View>
   );

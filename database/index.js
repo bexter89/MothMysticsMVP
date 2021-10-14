@@ -49,7 +49,6 @@ const get1RandomCard = (cardNumber, callback) => {
 const get3RandomCards = (cardIdArr, callback) => {
   Cards.find({cardId: {$in: [cardIdArr]}}, (err, data) => {
     if (err) {
-      console.log(`error getting data for 3 card pull!`, err);
       callback(err);
     } else {
       callback(null, data);
@@ -61,7 +60,6 @@ const get3RandomCards = (cardIdArr, callback) => {
 const getCardByName = (cardName, callback) => {
   Cards.find(cardName, (err, data) => {
     if (err) {
-      console.log(`error getting data for ${cardName} from db!`);
       callback(err);
     } else {
       callback(null, data);
@@ -73,7 +71,6 @@ const getCardByName = (cardName, callback) => {
 const getByArcana = (arcanaName, callback) => {
   Cards.find(arcanaName, (err, cardData) => {
     if (err) {
-      console.log(`error getting ${arcanaName} cards from db!`);
       callback(err);
     } else {
       callback(null, cardData);
