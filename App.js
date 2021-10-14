@@ -14,7 +14,7 @@ export default function App() {
 
   const pull1Card = () => {
    axios
-   .get("http://3.19.14.62/oneCard/")
+   .get('http://3.19.14.62/oneCard/')
    .then((response) => {
      console.log('response:', response);
      setOneCardDrawResult(response.data)

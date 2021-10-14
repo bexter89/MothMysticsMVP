@@ -49,7 +49,7 @@ const get1RandomCard = (cardNumber, callback) => {
 const get3RandomCards = (cardIdArr, callback) => {
   Cards.find({cardId: {$in: [cardIdArr]}}, (err, data) => {
     if (err) {
-      console.log(`error getting data for ${productId} from db!`);
+      console.log(`error getting data for 3 card pull!`, err);
       callback(err);
     } else {
       callback(null, data);
