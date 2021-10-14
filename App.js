@@ -14,7 +14,7 @@ export default function App() {
 
   const pull1Card = () => {
    axios
-   .get("http://192.168.1.161:3000/oneCard/")
+   .get("http://3.19.14.62:3000/oneCard/")
    .then((response) => {
      console.log('response:', response);
      setOneCardDrawResult(response.data)
@@ -27,7 +27,7 @@ export default function App() {
 
  const pull3Cards = () => {
    axios
-   .get('http://192.168.1.161:3000/threeCards/')
+   .get('http://3.19.14.62:3000/threeCards/')
    .then((response) => {
      setThreeCardDrawResult(response.data)
    })
