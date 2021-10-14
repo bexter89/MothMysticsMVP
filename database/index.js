@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://bekah123:bekah123@mothmysticapi.q0tjb.mongodb.net/mvp?retryWrites=true&w=majority')
+mongoose.connect(`${process.env.URI}`)
     .then(() => {
       console.log('MongoDB connection successful!');
     })
