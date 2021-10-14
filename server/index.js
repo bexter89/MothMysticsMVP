@@ -29,9 +29,7 @@ app.get('/test/', (req, res) => {
 
 // get one random card ** WORKS **
 app.get('/oneCard/', (req, res) => {
-  console.log('***one card triggered!');
   const cardNum = Math.floor(Math.random() * 79);
-  console.log('cardNum in server', cardNum);
   get1RandomCard(cardNum, (err, cardData) => {
     if (err) {
       res.status(404).send('Error getting card');
