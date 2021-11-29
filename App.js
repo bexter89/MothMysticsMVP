@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import CardViewer from './components/CardViewer'
-import TarotCard from './components/TarotCard'
+import AppBar from './components/AppBar'
 
 export default function App() {
   const [oneCard, setOneCard] = useState(true);
@@ -14,22 +14,22 @@ export default function App() {
 
   const pull1Card = () => {
    axios
-   .get('http://3.19.14.62/oneCard/')
+   .get('http://127.0.0.1:3000/oneCard/')
    .then((response) => {
-     console.log('response:', response.data);
      setOneCardDrawResult(response.data)
+     setClickedStatus(true)
    })
    .catch((error)=> {
-     console.log('error:', error)
      console.error(error);
    });
  }
 
  const pull3Cards = () => {
    axios
-   .get('http://3.19.14.62/threeCards/')
+   .get('http://127.0.0.1:3000/threeCards/')
    .then((response) => {
      setThreeCardDrawResult(response.data)
+     setClickedStatus(true)
    })
    .catch((error) => {
      console.error(error);
@@ -47,13 +47,22 @@ export default function App() {
         style={{width: 200, height: 200}}
       />
       <CardViewer threeCardDrawResult={threeCardDrawResult}
-      oneCardDrawResult={oneCardDrawResult} />
+      oneCardDrawResult={oneCardDrawResult} clicked={clicked}/>
+      <br/>
       <Button
         style={styles.button}
         onPress={() => {
           pull1Card();
         }}
         title={oneCard ? "pull a card!" : "Pulling your card!"}
+      />
+      <br/>
+      <Button
+        style={styles.button}
+        onPress={() => {
+          pull3Cards();
+        }}
+        title={threeCard ? "pull 3 cards!" : "Pulling your card!"}
       />
     </View>
   );

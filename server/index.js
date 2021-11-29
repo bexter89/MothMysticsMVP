@@ -41,13 +41,22 @@ app.get('/oneCard/', (req, res) => {
 
 // get three random cards ** WORKS **
 app.get('/threeCards/', (req, res) => {
+  const cardNumArr = [];
   const cardNum1 = Math.floor(Math.random() * 77);
   const cardNum2 = Math.floor(Math.random() * 77);
+  if (cardNum1 !== cardNum2 ) {
+    cardNumArr.push(cardNum1, cardNum2);
+  };
   const cardNum3 = Math.floor(Math.random() * 77);
-  const cardNumArr = [cardNum1, cardNum2, cardNum3];
+  const cardNum4 = Math.floor(Math.random() * 77);
+  if (cardNum3 !== cardNum1 && cardNum3!== cardNum2 ) {
+    cardNumArr.push(cardNum3);
+  } else if (cardNum4 !== cardNum1 && cardNum4!== cardNum2 ) {
+    cardNumArr.push(cardNum4);
+  }
   get3RandomCards(cardNumArr, (err, cardData) => {
     if (err) {
-      res.status(404).send('Error getting reviews');
+      res.status(404).send('Error getting cards');
     } else {
       res.send(cardData);
     }

@@ -47,7 +47,7 @@ const get1RandomCard = (cardNumber, callback) => {
 
 // get 3 cards ** WORKS **
 const get3RandomCards = (cardIdArr, callback) => {
-  Cards.find({cardId: {$in: [cardIdArr]}}, (err, data) => {
+  Cards.find({cardId: {$in: cardIdArr}}, (err, data) => {
     if (err) {
       callback(err);
     } else {
