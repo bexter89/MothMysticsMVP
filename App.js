@@ -8,16 +8,16 @@ import AppBar from './components/AppBar'
 export default function App() {
   const [oneCard, setOneCard] = useState(true);
   const [threeCard, setThreeCard] = useState(true);
-  const [threeCardDrawResult, setThreeCardDrawResult] = useState('');
-  const [oneCardDrawResult, setOneCardDrawResult] = useState('');
+  const [threeCardDrawResult, setThreeCardDrawResult] = useState(null);
+  const [oneCardDrawResult, setOneCardDrawResult] = useState(null);
   const [clicked, setClickedStatus] = useState(false);
 
   const pull1Card = () => {
    axios
    .get('http://127.0.0.1:3000/oneCard/')
    .then((response) => {
-     setOneCardDrawResult(response.data)
-     setClickedStatus(true)
+     setOneCardDrawResult(response.data);
+     setClickedStatus(true);
    })
    .catch((error)=> {
      console.error(error);
@@ -28,8 +28,9 @@ export default function App() {
    axios
    .get('http://127.0.0.1:3000/threeCards/')
    .then((response) => {
-     setThreeCardDrawResult(response.data)
-     setClickedStatus(true)
+     setOneCardDrawResult(null)
+     setThreeCardDrawResult(response.data);
+     setClickedStatus(true);
    })
    .catch((error) => {
      console.error(error);
@@ -62,7 +63,7 @@ export default function App() {
         onPress={() => {
           pull3Cards();
         }}
-        title={threeCard ? "pull 3 cards!" : "Pulling your card!"}
+        title={threeCard ? "pull 3 cards!" : "Pulling your cards!"}
       />
     </View>
   );
